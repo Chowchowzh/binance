@@ -1,0 +1,194 @@
+# =======================
+# Python
+# =======================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# =======================
+# 虚拟环境
+# =======================
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# =======================
+# IDE 和编辑器
+# =======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# =======================
+# 操作系统
+# =======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =======================
+# 项目特定 - 数据和结果
+# =======================
+# 原始和处理后的数据
+processed_data/
+raw_data/
+data/
+*.parquet
+*.csv
+*.h5
+*.hdf5
+
+# 忽略文件夹
+ignore/
+
+# 结果文件夹
+pipeline_results/*/
+advanced_pipeline_results/*/
+backtest_results/
+test_results/
+experiments/*/artifacts/
+experiments/*/logs/
+
+# 信号缓存
+signal_cache/
+*.npy
+
+# =======================
+# 日志和临时文件
+# =======================
+logs/
+*.log
+*.tmp
+*.temp
+.cache/
+
+# =======================
+# 模型和检查点
+# =======================
+# 机器学习模型
+*.pth
+*.pkl
+*.joblib
+*.model
+*.bin
+lgbm_model.txt
+scaler.pkl
+
+# 强化学习检查点
+model/rl_checkpoints/
+model/rl_models/
+rl_checkpoints/
+rl_models/
+
+# =======================
+# 分析图表和报告
+# =======================
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.html
+pnl_curve.png
+backtest_trades.csv
+backtest_full_analysis.png
+featured_importance.png
+model_alpha_analysis.png
+feature_importances.png
+equity_curves.png
+analysis_charts.png
+
+# =======================
+# 配置和敏感信息
+# =======================
+# API 密钥和配置
+key.txt
+*.key
+*.secret
+.env.local
+.env.production
+
+# 个人配置文件
+config/local_config.json
+config/private_config.json
+
+# =======================
+# 特征和结果文件
+# =======================
+selected_features.json
+feature_importances.json
+*.json.bak
+complete_report.json
+comprehensive_report.json
+evaluation_results.json
+pipeline_test_results.json
+test_report.json
+metrics.json
+
+# =======================
+# 包管理
+# =======================
+# uv
+.uv/
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =======================
+# Jupyter Notebook
+# =======================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# =======================
+# 数据库文件
+# =======================
+*.db
+*.sqlite
+*.sqlite3
+
+# =======================
+# 其他
+# =======================
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 压缩文件
+*.zip
+*.tar.gz
+*.rar
+
+# 文档输出
+docs/_build/

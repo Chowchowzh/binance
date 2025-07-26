@@ -1,0 +1,163 @@
+{
+    "database": {
+        "mongodb_uri": "mongodb+srv://luthercheu1129:Wy1EhFETs5QvJtT1@binance.mjdmrhf.mongodb.net/?retryWrites=true&w=majority",
+        "mongodb_db_name": "binance",
+        "collection_name_template": "{symbol}_{interval}_klines"
+    },
+    "api": {
+        "base_url": "https://api.binance.com",
+        "api_request_delay_seconds": 0.5,
+        "progress_report_interval_batches": 10,
+        "max_retries": 5,
+        "retry_delay_seconds": 300,
+        "timeout_seconds": 30
+    },
+    "data_collection": {
+        "target_symbol": "ETHUSDT",
+        "feature_symbols": ["ETHUSDT", "BTCUSDT"],
+        "interval": "1m",
+        "start_date": "2020-07-04 13:44:59.999000"
+    },
+    "trading": {
+        "initial_cash": 100000.0,
+        "min_trade_amount_eth": 0.001,
+        "fee_rate": 0.00075,
+        "position_adjustment_factor": 0.2,
+        "prediction_threshold_percentile": 5.0,
+        "calibration_bins": 20
+    },
+    "model": {
+        "sequence_length": 60,
+        "train_test_split_ratio": 0.8,
+        "num_classes": 3,
+        "d_model": 128,
+        "nhead": 8,
+        "num_encoder_layers": 3,
+        "dim_feedforward": 512,
+        "dropout": 0.1,
+        "batch_size": 64,
+        "epochs": 10,
+        "learning_rate": 1e-5,
+        "clip_value": 1.0,
+        "model_save_path": "model/transformer_model.pth",
+        "scaler_path": "model/scaler.pkl",
+        "train_signals_cache_path": "signal_cache/train_signals.npy",
+        "test_signals_cache_path": "signal_cache/test_signals.npy"
+    },
+    "reinforcement_learning": {
+        "environment": {
+            "initial_cash": 100000.0,
+            "transaction_cost_bps": 7.5,
+            "market_impact_factor": 0.1,
+            "max_position": 1.0,
+            "min_position": -1.0,
+            "position_levels": [-1.0, -0.5, 0.0, 0.5, 1.0],
+            "lookback_window": 252,
+            "price_column": "close",
+            "volume_column": "volume"
+        },
+        "reward": {
+            "type": "differential_sharpe",
+            "sharpe_window": 252,
+            "transaction_cost_penalty": 1.0,
+            "volatility_penalty": 0.1,
+            "risk_free_rate": 0.02,
+            "normalization_factor": 16.0
+        },
+        "agent": {
+            "learning_rate": 0.0003,
+            "gamma": 0.99,
+            "gae_lambda": 0.95,
+            "clip_epsilon": 0.2,
+            "value_loss_coeff": 0.5,
+            "entropy_coeff": 0.01,
+            "max_grad_norm": 0.5,
+            "weight_decay": 1e-4,
+            "batch_size": 64,
+            "buffer_size": 10000,
+            "update_epochs": 10,
+            "target_kl": 0.01,
+            "actor_hidden_dims": [256, 128],
+            "critic_hidden_dims": [256, 128],
+            "dropout": 0.2,
+            "use_batch_norm": true
+        },
+        "training": {
+            "num_episodes": 1000,
+            "max_steps_per_episode": 5000,
+            "eval_frequency": 50,
+            "save_frequency": 100,
+            "early_stopping_patience": 100,
+            "early_stopping_threshold": 0.001,
+            "pre_training_episodes": 100,
+            "fine_tuning_episodes": 200,
+            "curriculum_stages": 3,
+            "random_seed": 42,
+            "num_parallel_envs": 1,
+            "log_frequency": 10
+        },
+        "backtest": {
+            "walk_forward_window": 2520,
+            "min_train_size": 1260,
+            "test_size": 252,
+            "step_size": 63,
+            "purge_length": 5,
+            "embargo_length": 3,
+            "enable_purging": true,
+            "enable_embargoing": true,
+            "cv_folds": 5,
+            "sample_weight_decay": 0.95,
+            "min_sample_weight": 0.1,
+            "use_sample_weights": true
+        },
+        "hyperparameter_optimization": {
+            "enabled": false,
+            "n_trials": 100,
+            "timeout": 7200,
+            "sampler": "tpe",
+            "pruner": "median",
+            "optimization_direction": "maximize",
+            "metric": "sharpe_ratio"
+        },
+        "paths": {
+            "model_save_dir": "model/rl_models",
+            "checkpoint_dir": "model/rl_checkpoints",
+            "log_dir": "logs/rl_training",
+            "results_dir": "backtest_results/rl",
+            "experiment_dir": "experiments/rl"
+        }
+    },
+    "enhanced_transformer": {
+        "d_model": 256,
+        "nhead": 8,
+        "num_encoder_layers": 6,
+        "dim_feedforward": 1024,
+        "dropout": 0.3,
+        "drop_path_rate": 0.1,
+        "use_relative_position": true,
+        "max_relative_position": 128,
+        "use_financial_embedding": true,
+        "embedding_dropout": 0.2,
+        "layer_norm_eps": 1e-6,
+        "activation": "gelu",
+        "pre_norm": true,
+        "gradient_clip_val": 1.0,
+        "warmup_steps": 1000,
+        "scheduler_type": "cosine",
+        "min_lr_ratio": 0.01,
+        "regularization": {
+            "weight_decay": 1e-4,
+            "label_smoothing": 0.1,
+            "mixup_alpha": 0.2,
+            "cutmix_alpha": 0.0,
+            "stochastic_depth_rate": 0.1
+        },
+        "early_stopping": {
+            "patience": 20,
+            "min_delta": 0.001,
+            "monitor": "val_loss",
+            "mode": "min",
+            "restore_best_weights": true
+        }
+    }
+} 
